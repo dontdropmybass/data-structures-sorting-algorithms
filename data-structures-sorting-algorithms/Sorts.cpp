@@ -1,6 +1,8 @@
 #include "sorts.h"
+#include "FileHandler.h"
 
 void Sorts::bubbleSort(int* arr) {
+	int size = (sizeof(arr) / sizeof(int));
 	int outer, inner;
 	for (outer = (sizeof(arr)/sizeof(int)) - 1; outer > 0; outer--) {
 		for (inner = 0; inner < outer; inner++) {
@@ -11,11 +13,15 @@ void Sorts::bubbleSort(int* arr) {
 			}
 		}
 	}
+	if (size == 1000) {
+		FileHandler::saveToFile(arr, "1kBubbleSort.csv");
+	}
 
 }
 
 void Sorts::selectionSort(int* arr) {
 	int outer, inner, min;
+	int size = (sizeof(arr) / sizeof(int));
 	for (outer = 0; outer < (sizeof(arr)/sizeof(int)) - 1; outer++) {
 		min = outer;
 		
@@ -27,6 +33,10 @@ void Sorts::selectionSort(int* arr) {
 		arr[outer] = arr[min];
 		arr[min] = temp;
 
+	}
+
+	if (size == 1000) {
+		FileHandler::saveToFile(arr, "1kSelectionSort.csv");
 	}
 }
 
@@ -44,6 +54,10 @@ void Sorts::insertionSort(int arr[], int length)
 			j--;
 		} //end of while loop
 	} //end of for loop
+
+	if (length == 1000) {
+		FileHandler::saveToFile(arr, "1kInsertionSort.csv");
+	}
 }
 
 void Sorts::shellSort(int arr[], int length){
@@ -65,12 +79,18 @@ for (increment = length / 2; increment > 0; increment /= 2)
 			}
 		}
 		arr[j] = temp;
-	}
+	}//end inner for
+}//end outer for
+
+if (length == 1000) {
+	FileHandler::saveToFile(arr, "1kShellSort.csv");
 }
+
 }
 
 //takes an array, and the first  and last indicies of that array
 void Sorts::quickSort(int arr[], int left, int right) {
+	int size = (sizeof(arr) / sizeof(int));
 	//set indexing variables equal to first and last indecies
 	int i = left, j = right;
 	//temp variable to hold value when swapping index values
@@ -101,12 +121,17 @@ void Sorts::quickSort(int arr[], int left, int right) {
 	if (i < right) {
 		quickSort(arr, i, right);
 	}
+
+	if (size == 1000) {
+		FileHandler::saveToFile(arr, "1kQuickSort.csv");
+	}
 }
 
 /* l is for left index and r is right index of the
 sub-array of arr to be sorted */
 void Sorts::mergeSort(int arr[], int l, int r)
 {
+	int size = (sizeof(arr) / sizeof(int));
 	if (l < r)
 	{
 		//get the middle index
@@ -119,6 +144,10 @@ void Sorts::mergeSort(int arr[], int l, int r)
 		
 		//merge the halves
 		merge(arr, l, m, r);
+	}
+
+	if (size == 1000) {
+		FileHandler::saveToFile(arr, "1kMergeSort.csv");
 	}
 }
 
