@@ -1,46 +1,48 @@
 #include "sorts.h"
 #include "FileHandler.h"
 
-void Sorts::bubbleSort(int* arr) {
-	int size = (sizeof(arr) / sizeof(int));
-	int outer, inner;
-	for (outer = (sizeof(arr)/sizeof(int)) - 1; outer > 0; outer--) {
-		for (inner = 0; inner < outer; inner++) {
-			if (arr[inner] > arr[inner + 1]) {
-				int temp = arr[inner];
-				arr[inner] = arr[inner + 1];
-				arr[inner + 1] = temp;
-			}
-		}
-	}
-	if (size == 1000) {
+void Sorts::bubbleSort(int* arr, int size) {
+    bool swapped = true;
+    int j = 0;
+    int tmp;
+    while (swapped) {
+        swapped = false;
+        j++;
+        for (int i = 0; i < size - j; i++) {
+            if (arr[i] > arr[i + 1]) {
+                tmp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = tmp;
+                swapped = true;
+            }
+        }
+    }
+	if (size < 1001) {
 		FileHandler::saveToFile(arr, "1kBubbleSort.csv");
 	}
 
 }
 
-void Sorts::selectionSort(int* arr) {
-	int outer, inner, min;
-	int size = (sizeof(arr) / sizeof(int));
-	for (outer = 0; outer < (sizeof(arr)/sizeof(int)) - 1; outer++) {
-		min = outer;
-		
-		for (inner = outer + 1; inner < (sizeof(arr)/sizeof(int)); inner++)
-		{
-			if (arr[inner] < arr[min]) { min = inner; }
-		}
-		int temp = arr[outer];
-		arr[outer] = arr[min];
-		arr[min] = temp;
+void Sorts::selectionSort(int* arr, int size) {
+    int outer, inner, min;
+    for (outer = 0; outer < size - 1; outer++) {
+        min = outer;
+        for (inner = outer + 1; inner < size; inner++) {
+            if (arr[inner] < arr[min]) {
+                min = inner;
+            }
+        }
+        int temp = arr[outer];
+        arr[outer] = arr[min];
+        arr[min] = temp;
+    }
 
-	}
-
-	if (size == 1000) {
+	if (size < 1001) {
 		FileHandler::saveToFile(arr, "1kSelectionSort.csv");
 	}
 }
 
-void Sorts::insertionSort(int arr[], int length)
+void Sorts::insertionSort(int* arr, int length)
 {
 	int i, j, tmp;
 	for (i = 1; i < length; i++)
@@ -55,12 +57,12 @@ void Sorts::insertionSort(int arr[], int length)
 		} //end of while loop
 	} //end of for loop
 
-	if (length == 1000) {
+	if (length < 1001) {
 		FileHandler::saveToFile(arr, "1kInsertionSort.csv");
 	}
 }
 
-void Sorts::shellSort(int arr[], int length){
+void Sorts::shellSort(int* arr, int length){
 int i, j, increment, temp;
 for (increment = length / 2; increment > 0; increment /= 2)
 {
@@ -82,17 +84,17 @@ for (increment = length / 2; increment > 0; increment /= 2)
 	}//end inner for
 }//end outer for
 
-if (length == 1000) {
+if (length < 1001) {
 	FileHandler::saveToFile(arr, "1kShellSort.csv");
 }
 
 }
 
 //takes an array, and the first  and last indicies of that array
-void Sorts::quickSort(int arr[], int left, int right) {
-	int size = (sizeof(arr) / sizeof(int));
-	//set indexing variables equal to first and last indecies
-	int i = left, j = right;
+void Sorts::quickSort(int* arr, int left, int right) {
+    //set indexing variables equal to first and last indecies
+    int i = left;
+    int j = right;
 	//temp variable to hold value when swapping index values
 	int tmp;
 	//pivot is set to the middle variable
@@ -122,85 +124,79 @@ void Sorts::quickSort(int arr[], int left, int right) {
 		quickSort(arr, i, right);
 	}
 
-	if (size == 1000) {
+	if (right < 1001) {
 		FileHandler::saveToFile(arr, "1kQuickSort.csv");
 	}
 }
 
 /* l is for left index and r is right index of the
 sub-array of arr to be sorted */
-void Sorts::mergeSort(int arr[], int l, int r)
+void Sorts::mergeSort(int* arr, int l, int r)
 {
-	int size = (sizeof(arr) / sizeof(int));
-	if (l < r)
-	{
-		//get the middle index
-		int m = l + (r - l) / 2;
+    arr = mSort(arr,r);
 
-		// make two seperate arrays 
-		//finally merge the  halves into one array
-		mergeSort(arr, l, m);
-		mergeSort(arr, m + 1, r);
-		
-		//merge the halves
-		merge(arr, l, m, r);
-	}
-
-	if (size == 1000) {
+	if (r < 1001) {
 		FileHandler::saveToFile(arr, "1kMergeSort.csv");
 	}
 }
 
-
-void Sorts::merge(int arr[], int l, int m, int r)
-{
-	int i, j, k;
-	 int n1 = m - l + 1;
-	 int n2 = r - m;
-
-	//create temp arrays 
-	int L[n1], R[n2];
-
-	// Copy data to temp arrays L[] and R[] 
-	for (i = 0; i < n1; i++)
-		L[i] = arr[l + i];
-	for (j = 0; j < n2; j++)
-		R[j] = arr[m + 1 + j];
-
-	//Merge the temp arrays back into arr[l..r]
-	i = 0; // Initial index of first subarray
-	j = 0; // Initial index of second subarray
-	k = l; // Initial index of merged subarray
-	while (i < n1 && j < n2)
-	{
-		if (L[i] <= R[j])
-		{
-			arr[k] = L[i];
-			i++;
-		}
-		else
-		{
-			arr[k] = R[j];
-			j++;
-		}
-		k++;
-	}
-
-	// Copy the remaining elements of L[], if there are any 
-	while (i < n1)
-	{
-		arr[k] = L[i];
-		i++;
-		k++;
-	}
-
-	// Copy the remaining elements of R[], if ther are any 
-	while (j < n2)
-	{
-		arr[k] = R[j];
-		j++;
-		k++;
-	}
+int* Sorts::mSort(int* arr, int size) {
+    if (size > 1) {
+        //get the middle index
+        int m = (int) size / 2;
+        
+        // make two seperate arrays
+        int size1 = m;
+        int* arr1 = new int[size1];
+        
+        for (int i = 0; i < size1; i++) {
+            arr1[i] = arr[i];
+        }
+        
+        int size2 = size - m;
+        int* arr2 = new int[size2];
+        
+        for (int i = 0; i < size2; i++) {
+            arr2[i] = arr[i + m];
+        }
+        
+        // finally merge the  halves into one array
+        mSort(arr1, size1);
+        mSort(arr2, size2);
+        
+        //merge the halves
+        arr = merge(arr1, size1, arr2, size2);
+        delete [] arr1;
+        delete [] arr2;
+    }
+    return arr;
 }
 
+int* Sorts::merge(int* arr1, int size1, int* arr2, int size2) {
+    int i,j;
+    int* merged = new int[size1+size2];
+    i = 0;
+    j = 0;
+    
+    while (i < size1 || j < size2) {
+        if (i >= size1) {
+            merged[i+j] = arr2[j];
+            j++;
+        }
+        else if (j >= size2) {
+            merged[i+j] = arr1[i];
+            i++;
+        }
+        else if (arr1[i]<arr2[j]) {
+            merged[i+j] = arr1[i];
+            i++;
+        }
+        else {
+            merged[i+j] = arr2[j];
+            j++;
+        }
+    }
+    
+    return merged;
+}
 

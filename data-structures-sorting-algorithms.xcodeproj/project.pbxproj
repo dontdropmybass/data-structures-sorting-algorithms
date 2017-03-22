@@ -11,6 +11,7 @@
 		FAD9455B1E805CA30016BE91 /* RandomArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD945581E805CA30016BE91 /* RandomArray.cpp */; };
 		FAD9455C1E805CA30016BE91 /* Sorts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD945591E805CA30016BE91 /* Sorts.cpp */; };
 		FAD9455D1E805CA30016BE91 /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD9455A1E805CA30016BE91 /* Source.cpp */; };
+		FAD9457B1E8145590016BE91 /* FileHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD945791E8145590016BE91 /* FileHandler.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,8 @@
 		FAD9455A1E805CA30016BE91 /* Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Source.cpp; sourceTree = "<group>"; };
 		FAD9455E1E805E930016BE91 /* sorts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sorts.h; sourceTree = "<group>"; };
 		FAD9455F1E805EAA0016BE91 /* randomarray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = randomarray.h; sourceTree = "<group>"; };
+		FAD945791E8145590016BE91 /* FileHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileHandler.cpp; sourceTree = "<group>"; };
+		FAD9457A1E8145590016BE91 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 		FAD9454A1E7F56910016BE91 /* data-structures-sorting-algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				FAD945791E8145590016BE91 /* FileHandler.cpp */,
+				FAD9457A1E8145590016BE91 /* FileHandler.h */,
 				FAD945581E805CA30016BE91 /* RandomArray.cpp */,
 				FAD945591E805CA30016BE91 /* Sorts.cpp */,
 				FAD9455F1E805EAA0016BE91 /* randomarray.h */,
@@ -133,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAD9455D1E805CA30016BE91 /* Source.cpp in Sources */,
+				FAD9457B1E8145590016BE91 /* FileHandler.cpp in Sources */,
 				FAD9455B1E805CA30016BE91 /* RandomArray.cpp in Sources */,
 				FAD9454C1E7F56910016BE91 /* main.cpp in Sources */,
 				FAD9455C1E805CA30016BE91 /* Sorts.cpp in Sources */,
@@ -262,6 +268,7 @@
 				FAD945511E7F56910016BE91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
