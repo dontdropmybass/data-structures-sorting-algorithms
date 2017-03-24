@@ -146,7 +146,7 @@ int main(int argc, const char * argv[]) {
             delete [] originalArray;
             delete [] array;
         }
-        FileHandler::saveToFile(csvOutput,"sorting_times.csv");
+        FileHandler::saveToFile(csvOutput,"/Users/alex/repos/data-structures-sorting-algorithms/sorting_times.csv");
     }
     else {
         int* originalArray = RandomArray::generateArray(arraySize);

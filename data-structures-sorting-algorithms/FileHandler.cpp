@@ -1,5 +1,6 @@
 #include "FileHandler.h"
 
+// go through an array and save all the numbers to file
 void FileHandler::saveToFile(int* arr, std::string filename) {
     std::ofstream ofs(filename, std::fstream::out | std::fstream::trunc);
     if (ofs.fail()) throw std::invalid_argument("Bad file name");
@@ -11,6 +12,7 @@ void FileHandler::saveToFile(int* arr, std::string filename) {
 	ofs.close();
 }
 
+// save a string to a file
 void FileHandler::saveToFile(std::string data, std::string filename) {
     std::ofstream ofs(filename, std::fstream::out | std::fstream::trunc);
     if (ofs.fail()) throw std::invalid_argument("Bad file name");
